@@ -35,6 +35,7 @@ aws iam create-policy \
         "Action":[
             "lambda:CreateFunction",
             "lambda:DeleteFunction",
+            "lambda:GetAccountSettings",
             "lambda:GetFunction",
             "lambda:InvokeFunction",
             "lambda:ListFunctions",
