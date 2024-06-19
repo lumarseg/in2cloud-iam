@@ -22,7 +22,7 @@ password=$(aws secretsmanager get-random-password --password-length 16 --exclude
 
 
 # Step 06: Enable console access for the "dev.in2clouds" user
-aws iam create-login-profile --user-name dev.in2clouds --password "$password" --password-reset-required
+aws iam create-login-profile --user-name dev.in2clouds --password "$password"
 
 
 # Step 07: Create a policy for minimum privileges for Lambda
@@ -97,7 +97,7 @@ aws iam attach-group-policy \
 
 echo
 echo "The 'dev.in2clouds' user has been created successfully."
-echo "The temporary password is: $password"
+echo "The user password is: $password"
 echo "URL: https://$account.signin.aws.amazon.com/console"
 echo
 echo "done !!!"
