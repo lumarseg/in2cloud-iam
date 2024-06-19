@@ -18,6 +18,10 @@ aws iam detach-group-policy \
 --group-name in2clouds \
 --policy-arn arn:aws:iam::$account:policy/in2cloudsDynamoDBLeastPrivilege
 
+aws iam detach-group-policy \
+--group-name in2clouds \
+--policy-arn arn:aws:iam::$account:policy/in2cloudsCloudwatchLeastPrivilege
+
 
 # Step 03: Delete the policy
 aws iam delete-policy \
@@ -28,6 +32,9 @@ aws iam delete-policy \
 
 aws iam delete-policy \
 --policy-arn arn:aws:iam::$account:policy/in2cloudsDynamoDBLeastPrivilege
+
+aws iam delete-policy \
+--policy-arn arn:aws:iam::$account:policy/in2cloudsCloudwatchLeastPrivilege
 
 
 # Step 04: Delete the login profile

@@ -80,6 +80,21 @@ aws iam create-policy \
     ]
 }'
 
+# Step 10: Create a policy for creating tables in CloudWatch
+aws iam create-policy \
+--policy-name in2cloudsCloudwatchLeastPrivilege \
+--policy-document '{
+    "Version":"2012-10-17",
+    "Statement":[
+        {
+        "Action":[
+            "cloudwatch:GetMetricData"],
+        "Effect":"Allow",
+        "Resource":"*"
+        }
+    ]
+}'
+
 
 # Step 10: Attach the policies to the "in2clouds" group
 aws iam attach-group-policy \
@@ -94,6 +109,9 @@ aws iam attach-group-policy \
 --group-name in2clouds \
 --policy-arn arn:aws:iam::$account:policy/in2cloudsDynamoDBLeastPrivilege
 
+aws iam attach-group-policy \
+--group-name in2clouds \
+--policy-arn arn:aws:iam::$account:policy/in2cloudsCloudwatchLeastPrivilege
 
 
 echo
