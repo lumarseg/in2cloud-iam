@@ -39,8 +39,6 @@ aws iam create-policy \
             "lambda:GetFunction",
             "lambda:InvokeFunction",
             "lambda:ListFunctions",
-            "lambda:ListTags",
-            "lambda:TagResource",
             "lambda:UpdateFunctionCode",
             "lambda:UpdateFunctionConfiguration"],
         "Effect":"Allow",
@@ -97,6 +95,20 @@ aws iam create-policy \
     ]
 }'
 
+# Step 11: Create a policy for creating tables in IAM
+aws iam create-policy \
+--policy-name in2cloudsIAMLeastPrivilege \
+--policy-document '{
+    "Version":"2012-10-17",
+    "Statement":[
+        {
+        "Action":[
+            "iam:CreateRole"],
+        "Effect":"Allow",
+        "Resource":"*"
+        }
+    ]
+}'
 
 # Step 10: Attach the policies to the "in2clouds" group
 aws iam attach-group-policy \
@@ -115,6 +127,9 @@ aws iam attach-group-policy \
 --group-name in2clouds \
 --policy-arn arn:aws:iam::$account:policy/in2cloudsCloudwatchLeastPrivilege
 
+aws iam attach-group-policy \
+--group-name in2clouds \
+--policy-arn arn:aws:iam::$account:policy/in2cloudsIAMLeastPrivilege
 
 echo
 echo "The 'dev.in2clouds' user has been created successfully."
