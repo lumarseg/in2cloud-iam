@@ -39,6 +39,8 @@ aws iam create-policy \
             "lambda:GetFunction",
             "lambda:InvokeFunction",
             "lambda:ListFunctions",
+            "lambda:ListTags",
+            "lambda:TagResource",
             "lambda:UpdateFunctionCode",
             "lambda:UpdateFunctionConfiguration"],
         "Effect":"Allow",
